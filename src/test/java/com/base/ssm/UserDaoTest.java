@@ -20,11 +20,14 @@ public class UserDaoTest extends BaseTest {
     }
     @Test
     public void addUser() {
-        SsmUser user=new SsmUser();
-        user.setUsername("飞扬");
-        user.setPassword("123456");
-        user.setEmail("feiyang@163.com");
-        userMapper.insert(user);
+        for(Integer i=0;i<100;i++){
+            SsmUser user=new SsmUser();
+            user.setUsername("飞扬"+i);
+            user.setPassword("123456"+i);
+            user.setEmail("feiyang"+i+"@163.com");
+            userMapper.insert(user);
+        }
+
 
     }
 }

@@ -1,5 +1,6 @@
 package com.base.ssm.controller;
 
+import com.base.ssm.common.Paginator;
 import com.base.ssm.model.SsmUser;
 import com.base.ssm.service.UserService;
 import org.apache.log4j.Logger;
@@ -46,6 +47,11 @@ public class TestController {
 
         SsmUser user=userService.findByUser(userId);
         return user;
+    }
+    @ResponseBody
+    @RequestMapping("/userList")
+    public Object userList(Paginator p){
+        return userService.userList(p);
     }
 
 }

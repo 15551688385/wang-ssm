@@ -1,6 +1,6 @@
 package com.base.ssm.service.impl;
 
-import com.base.ssm.common.PageList;
+import com.base.ssm.common.PageReturn;
 import com.base.ssm.common.Paginator;
 import com.base.ssm.dao.SsmUserMapper;
 import com.base.ssm.model.SsmUser;
@@ -10,10 +10,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends BaseServiceImpl<SsmUser> implements UserService {
     private Logger log = Logger.getLogger(this.getClass());
     @Autowired
     private SsmUserMapper userMapper;
@@ -31,9 +30,10 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectByPrimaryKey(userId);
     }
 
+
     @Override
-    public PageList userList(Paginator p) {
+    public PageReturn userList(Paginator p) {
         PageHelper.startPage(p.getPageNum(), p.getPageSize());
-        return new PageList(userMapper.selectAll());
+        return PageReturn.list(userMapper.selectAll());
     }
 }

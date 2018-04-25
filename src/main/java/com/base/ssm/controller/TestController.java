@@ -1,5 +1,6 @@
 package com.base.ssm.controller;
 
+import com.base.ssm.common.PageReturn;
 import com.base.ssm.common.Paginator;
 import com.base.ssm.model.SsmUser;
 import com.base.ssm.service.UserService;
@@ -49,9 +50,15 @@ public class TestController {
         return user;
     }
     @ResponseBody
-    @RequestMapping("/userList")
-    public Object userList(Paginator p){
+    @RequestMapping("/userList2")
+    public Object userList2(Paginator p){
         return userService.userList(p);
+    }
+    @ResponseBody
+    @RequestMapping("/oneUser")
+    public Object oneUser(Integer userId){
+        SsmUser user=userService.selectByKey(userId);
+        return PageReturn.successData(user);
     }
 
 }

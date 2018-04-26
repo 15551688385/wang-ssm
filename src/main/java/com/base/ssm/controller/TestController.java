@@ -1,5 +1,6 @@
 package com.base.ssm.controller;
 
+import com.base.ssm.common.MyException;
 import com.base.ssm.common.PageReturn;
 import com.base.ssm.common.Paginator;
 import com.base.ssm.model.SsmUser;
@@ -54,11 +55,20 @@ public class TestController {
     public Object userList2(Paginator p){
         return userService.userList(p);
     }
+
     @ResponseBody
     @RequestMapping("/oneUser")
     public Object oneUser(Integer userId){
         SsmUser user=userService.selectByKey(userId);
         return PageReturn.successData(user);
+    }
+
+    @ResponseBody
+    @RequestMapping("/exception")
+    public Object exception(Integer userId){
+        SsmUser user=userService.selectByKey(userId);
+        throw new MyException("wo_shi_yi_chang","就是抛异常了");
+//        return PageReturn.successData(user);
     }
 
 }
